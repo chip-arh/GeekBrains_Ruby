@@ -9,7 +9,7 @@ def getSymbol(c)    # функция возвращает массив [глас
     if ((cod>=48)&(cod<=57)) # цифра
         _num=c;
     end
-    if ((cod>=65)&(cod<=91)) # символ
+    if ((cod>=65)&(cod<=90)) # символ
         if (['A','E','I','O','U','Y'].index(c.upcase)!=nil) #гласный
             _glas = c;
         else 
@@ -32,7 +32,7 @@ if (str.length>=1)&(str.length<=10000)
         soglas = soglas+r[1];
         num = num + r[2];
     end
-    puts("#{glas} #{soglas} #{num}");
+    puts("#{glas} #{soglas} #{num}".strip);
 else
     puts("1 <= длина строки <= 10000 - не соблюдается")
 end
