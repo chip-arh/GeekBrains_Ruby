@@ -1,9 +1,9 @@
 # Task 1
 
-def getSymbol(c)    # функция возвращает стандартизованный символ или ошибку 
+def getSymbol(c,m)    # функция возвращает стандартизованный символ или ошибку 
     cod = c.upcase.ord;
-    if ((cod>=65)&(cod<=91))|((cod>=48)&(cod<=57))
-        c.upcase;
+    if (((cod>=65)&(cod<=90))|((cod>=48)&(cod<=57))|((m==1)&(cod>32)&(cod<255)))
+        c.upcase; 
     else
         'Error';
     end
@@ -18,26 +18,27 @@ if ((str.length >=1) & (str.length <=10000)) # проверка на соотв�
     result = 'YES'                           # результат 
     symb1='';                                # инициируем переменные
     symb2='';                                #
+    start = 0;
     while ((start_pos<end_pos)&(result=='YES')) #цикл пока позиции не сошлись и строка
-                                                #удовлетворяет условию
         #puts('Start')
         loop do                              # цикл пока не получим нормальный символ
             #puts(start_pos)
-            symb1 = getSymbol(str[start_pos]);
+            symb1 = getSymbol(str[start_pos],start);
             if symb1 == 'Error'
                 start_pos=start_pos+1;
             end
-        break if (symb1!='Error') | (start_pos>end_pos)
+            break if (symb1!='Error') | (start_pos>end_pos)
         end
         #puts('end')
         loop do                             # цикл пока не получим нормальный символ
             #puts(end_pos)
-            symb2 = getSymbol(str[end_pos]);
+            symb2 = getSymbol(str[end_pos],start);
             if symb2 == 'Error'
                 end_pos=end_pos-1;
             end
-        break if (symb2!='Error') | (start_pos>end_pos)    
+            break if (symb2!='Error') | (start_pos>end_pos)    
         end
+        start = 1;
         #puts("#{symb1} (#{start_pos}) - #{symb2} (#{end_pos})")
         # проверяем символы
         if ((symb1 != symb2) | (symb1 == 'Error'))
